@@ -1,0 +1,52 @@
+TITLE: Bayesian Multivariate Multiple Regression (MMR) 
+       Integrating WM Components and Visual Attention;
+
+DATA: FILE IS data_WMandNUMBER.dat;
+
+!这个是路径分析模型，分别以圆点数量估计、数量大小比较和数轴任务得分的标准分作为三个因变量，
+! 以年龄、性别、注意力、中央执行、语音环路和视空间画板作为预测变量进行MMR
+
+VARIABLE: NAMES=
+    gender age NSE VSCCB ATT SE SC CE 
+    PLF PLB PLCOM ZNSE ZVSCCB ZATT ZSE 
+    ZSC ZCE ZPLF ZPLB ZPLCOM;
+
+! NSE/ZNSE：圆点数量估计原始分/标准分
+! SE/ZSE：数轴任务原始分/标准分
+! SC/ZSC：数量大小比较原始分/标准分
+! ATT/ZATT 注意水平（几何图形搜索）原始分/标准分
+! CE/ZCE 中央执行原始分/标准分
+! VSCCB/ZVSCCB：空间工作记忆合并原始分/标准分
+! PLCOM/ZPLCOM：语音工作记忆合并原始分/标准分
+
+MISSING ARE ALL (999);
+
+
+
+USEVAR = gender age ZNSE ZVSCCB ZATT ZSE ZSC ZCE ZPLF;
+
+
+ANALYSIS:
+    ESTIMATOR = BAYES;       
+    BITERATIONS = (10000);  
+    PROCESSORS = 2;
+
+MODEL:
+    ZNSE ZSE ZSC on age gender ZATT ZCE ZPLF ZVSCCB;
+
+    ZNSE WITH ZSE ZSC;
+    ZSE WITH ZSC;
+
+    age WITH ZATT ZCE ZPLF ZVSCCB;
+    ZATT WITH ZCE ZVSCCB;
+    ZCE WITH ZPLF ZVSCCB;
+    ZPLF WITH ZVSCCB;
+
+
+OUTPUT: 
+    STDYX        ! 输出标准化路径系数
+    SAMPSTAT     ! 输出样本统计量
+    TECH8        ! 监控贝叶斯迭代收敛过程
+
+PLOT:
+    TYPE = PLOT2; ! 允许在输出中查看后验概率分布、迹线图等

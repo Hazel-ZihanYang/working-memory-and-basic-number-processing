@@ -1,0 +1,1013 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+11/05/2026   3:23 PM
+
+INPUT INSTRUCTIONS
+
+  DATA: FILE IS data_WMandNUMBER.dat;
+
+  !Õâ¸öÊÇÂ·¾¶·ÖÎöÄ£ÐÍ£¬·Ö±ðÒÔÔ²µãÊýÁ¿¹À¼Æ¡¢ÊýÁ¿´óÐ¡±È½ÏºÍÊýÖáÈÎÎñµÃ·ÖµÄ±ê×¼·Ö×÷ÎªÈý¸öÒò±äÁ¿£
+  ! ÒÔÄêÁä¡¢ÐÔ±ð¡¢×¢ÒâÁ¦¡¢ÖÐÑëÖ´ÐÐ¡¢ÓïÒô»·Â·ºÍÊÓ¿Õ¼ä»­°å×÷ÎªÔ¤²â±äÁ¿½øÐÐMMR
+
+  VARIABLE: NAMES=
+  gender
+  age
+  NSE
+  VSCCB
+  ATT
+  SE
+  SC
+  CE
+  PLF
+  PLB
+  PLCOM
+  ZNSE
+  ZVSCCB
+  ZATT
+  ZSE
+  ZSC
+  ZCE
+  ZPLF
+  ZPLB
+  ZPLCOM
+  ;
+
+  ! NSE/ZNSE£ºÔ²µãÊýÁ¿¹À¼ÆÔ­Ê¼·Ö/±ê×¼·Ö
+  ! SE/ZSE£ºÊýÖáÈÎÎñÔ­Ê¼·Ö/±ê×¼·Ö
+  ! SC/ZSC£ºÊýÁ¿´óÐ¡±È½ÏÔ­Ê¼·Ö/±ê×¼·Ö
+  ! ATT/ZATT ×¢ÒâË®Æ½£¨¼¸ºÎÍ¼ÐÎËÑË÷£©Ô­Ê¼·Ö/±ê×¼·Ö
+  ! CE/ZCE ÖÐÑëÖ´ÐÐÔ­Ê¼·Ö/±ê×¼·Ö
+  ! VSCCB/ZVSCCB£º¿Õ¼ä¹¤×÷¼ÇÒäºÏ²¢Ô­Ê¼·Ö/±ê×¼·Ö
+  ! PLCOM/ZPLCOM£ºÓïÒô¹¤×÷¼ÇÒäºÏ²¢Ô­Ê¼·Ö/±ê×¼·Ö
+
+  MISSING ARE ALL (999);
+
+
+
+  USEVAR=
+
+  gender age ZNSE ZVSCCB ZATT ZSE ZSC ZCE ZPLF;
+
+
+  ANALYSIS:Type=general;
+           estimator=mlr;
+           H1ITERATIONS = 100000000;
+
+  MODEL:
+
+  ZNSE ZSE ZSC on age gender ZATT ZCE ZPLF ZVSCCB;
+  ZNSE WITH ZSE ZSC;
+  ZSE WITH ZSC;
+  age WITH ZATT ZCE ZPLF ZVSCCB;
+  ZATT WITH ZCE ZVSCCB;
+  ZCE WITH ZPLF ZVSCCB;
+  ZPLF WITH ZVSCCB;
+
+
+  OUTPUT: MODINDICES(ALL) STDYX SAMP;
+
+  TECH4;TECH1;
+
+
+
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+  !Õâ¸öÊÇÂ·¾¶·ÖÎöÄ£ÐÍ£¬·Ö±ðÒÔÔ²µãÊýÁ¿¹À¼Æ¡¢ÊýÁ¿´óÐ¡±È½ÏºÍÊýÖáÈÎÎñµÃ·ÖµÄ±ê×¼·Ö×÷ÎªÈý¸öÒò±äÁ¿£¬
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         110
+
+Number of dependent variables                                    3
+Number of independent variables                                  6
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   ZNSE        ZSE         ZSC
+
+Observed independent variables
+   GENDER      AGE         ZVSCCB      ZATT        ZCE         ZPLF
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                      100000000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  data_WMandNUMBER.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            13
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           0.918
+ ZSE            0.900         0.936
+ ZSC            0.918         0.936         0.973
+ AGE            0.918         0.936         0.973         1.000
+ ZVSCCB         0.882         0.900         0.927         0.927         0.927
+ ZATT           0.827         0.836         0.873         0.882         0.827
+ ZCE            0.900         0.918         0.955         0.955         0.909
+ ZPLF           0.900         0.918         0.955         0.973         0.909
+ GENDER         0.918         0.936         0.973         1.000         0.927
+
+
+           Covariance Coverage
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           0.882
+ ZCE            0.855         0.955
+ ZPLF           0.864         0.936         0.973
+ GENDER         0.882         0.955         0.973         1.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+                0.007        -0.015        -0.002         6.274        -0.042
+
+
+           Means
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+                0.030         0.063         0.013         1.455
+
+
+           Covariances
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           0.986
+ ZSE            0.597         0.985
+ ZSC            0.295         0.366         0.989
+ AGE            0.030         0.077         0.098         0.170
+ ZVSCCB         0.243         0.307         0.384         0.032         0.912
+ ZATT           0.341         0.412         0.226         0.006         0.285
+ ZCE            0.213         0.222         0.308         0.023         0.098
+ ZPLF           0.319         0.312         0.227         0.021         0.136
+ GENDER        -0.022        -0.094        -0.024        -0.008        -0.048
+
+
+           Covariances
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           0.979
+ ZCE            0.155         0.780
+ ZPLF           0.363         0.130         0.996
+ GENDER         0.074        -0.075         0.040         0.248
+
+
+           Correlations
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           1.000
+ ZSE            0.605         1.000
+ ZSC            0.299         0.371         1.000
+ AGE            0.073         0.189         0.238         1.000
+ ZVSCCB         0.256         0.323         0.405         0.082         1.000
+ ZATT           0.347         0.420         0.230         0.014         0.302
+ ZCE            0.242         0.254         0.351         0.062         0.116
+ ZPLF           0.322         0.315         0.229         0.050         0.143
+ GENDER        -0.044        -0.190        -0.049        -0.040        -0.102
+
+
+           Correlations
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           1.000
+ ZCE            0.178         1.000
+ ZPLF           0.367         0.148         1.000
+ GENDER         0.150        -0.170         0.080         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -1055.720
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     ZNSE                  0.000      -0.364      -2.235    0.99%      -0.989     -0.116      0.133
+             101.000       0.990      -0.433       2.128    0.99%       0.383      0.881
+     ZSE                   0.000      -0.357      -2.260    0.97%      -1.003     -0.123      0.128
+             103.000       0.990      -0.819       1.636    0.97%       0.379      1.008
+     ZSC                   0.000      -0.873      -2.681    1.87%      -0.664     -0.034      0.155
+             107.000       0.991       0.803       2.109    0.93%       0.281      0.722
+     AGE                   6.274       0.805       5.369    0.91%       5.917      6.147      6.250
+             110.000       0.170       1.615       7.861    0.91%       6.333      6.583
+     ZVSCCB               -0.030       0.300      -1.684    2.94%      -1.026     -0.203      0.044
+             102.000       0.906      -0.167       2.760    0.98%       0.126      0.620
+     ZATT                  0.000       0.515      -2.065    1.03%      -0.860     -0.281     -0.185
+              97.000       0.990       0.257       2.804    1.03%       0.153      0.828
+     ZCE                   0.065      -1.276      -2.923    0.95%      -0.577      0.303      0.449
+             105.000       0.780       0.957       0.889   18.10%       0.596      0.743
+     ZPLF                  0.000       1.012      -1.979    4.67%      -0.847     -0.092     -0.092
+             107.000       0.991       3.075       3.684    1.87%       0.286      0.663
+     GENDER                1.455       0.183       1.000   54.55%       1.000      1.000      1.000
+             110.000       0.248      -1.967       2.000   45.45%       2.000      2.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       47
+
+Loglikelihood
+
+          H0 Value                        -980.835
+          H0 Scaling Correction Factor      1.0792
+            for MLR
+          H1 Value                        -976.340
+          H1 Scaling Correction Factor      1.0694
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    2055.671
+          Bayesian (BIC)                  2182.593
+          Sample-Size Adjusted BIC        2034.072
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              9.203*
+          Degrees of Freedom                     5
+          P-Value                           0.1012
+          Scaling Correction Factor         0.9770
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.087
+          90 Percent C.I.                    0.000  0.175
+          Probability RMSEA <= .05           0.204
+
+CFI/TLI
+
+          CFI                                0.960
+          TLI                                0.834
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            127.218
+          Degrees of Freedom                    21
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.039
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ ZNSE     ON
+    AGE                0.087      0.184      0.475      0.635
+    GENDER            -0.096      0.186     -0.516      0.606
+    ZATT               0.209      0.094      2.225      0.026
+    ZCE                0.166      0.110      1.501      0.133
+    ZPLF               0.207      0.084      2.456      0.014
+    ZVSCCB             0.142      0.095      1.495      0.135
+
+ ZSE      ON
+    AGE                0.353      0.194      1.823      0.068
+    GENDER            -0.412      0.169     -2.432      0.015
+    ZATT               0.326      0.091      3.594      0.000
+    ZCE                0.126      0.134      0.940      0.347
+    ZPLF               0.168      0.071      2.374      0.018
+    ZVSCCB             0.155      0.102      1.517      0.129
+
+ ZSC      ON
+    AGE                0.452      0.179      2.528      0.011
+    GENDER             0.048      0.176      0.270      0.787
+    ZATT               0.036      0.088      0.406      0.684
+    ZCE                0.321      0.108      2.973      0.003
+    ZPLF               0.117      0.116      1.007      0.314
+    ZVSCCB             0.341      0.092      3.726      0.000
+
+ ZNSE     WITH
+    ZSE                0.349      0.075      4.688      0.000
+    ZSC                0.083      0.075      1.113      0.266
+
+ ZSE      WITH
+    ZSC                0.110      0.060      1.816      0.069
+
+ AGE      WITH
+    ZATT               0.008      0.037      0.215      0.830
+    ZCE                0.021      0.035      0.602      0.547
+    ZPLF               0.021      0.034      0.625      0.532
+    ZVSCCB             0.033      0.038      0.864      0.388
+
+ ZATT     WITH
+    ZCE                0.148      0.087      1.698      0.089
+    ZVSCCB             0.295      0.095      3.116      0.002
+
+ ZCE      WITH
+    ZPLF               0.129      0.085      1.522      0.128
+    ZVSCCB             0.100      0.086      1.159      0.246
+
+ ZPLF     WITH
+    ZVSCCB             0.131      0.100      1.312      0.190
+    ZATT               0.352      0.144      2.442      0.015
+
+ Means
+    AGE                6.274      0.039    159.491      0.000
+    ZVSCCB            -0.043      0.094     -0.456      0.648
+    ZATT               0.024      0.100      0.238      0.812
+    ZCE                0.063      0.087      0.723      0.470
+    ZPLF               0.011      0.097      0.112      0.911
+
+ Intercepts
+    ZNSE              -0.413      1.123     -0.367      0.713
+    ZSE               -1.640      1.238     -1.325      0.185
+    ZSC               -2.911      1.065     -2.735      0.006
+
+ Variances
+    AGE                0.170      0.031      5.516      0.000
+    ZVSCCB             0.909      0.122      7.453      0.000
+    ZATT               0.976      0.148      6.608      0.000
+    ZCE                0.782      0.132      5.942      0.000
+    ZPLF               0.995      0.218      4.573      0.000
+
+ Residual Variances
+    ZNSE               0.776      0.110      7.037      0.000
+    ZSE                0.655      0.094      6.980      0.000
+    ZSC                0.681      0.094      7.208      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ ZNSE     ON
+    AGE                0.036      0.077      0.474      0.636
+    GENDER            -0.048      0.094     -0.515      0.606
+    ZATT               0.208      0.093      2.223      0.026
+    ZCE                0.148      0.094      1.569      0.117
+    ZPLF               0.208      0.091      2.292      0.022
+    ZVSCCB             0.136      0.091      1.496      0.135
+
+ ZSE      ON
+    AGE                0.146      0.078      1.865      0.062
+    GENDER            -0.206      0.084     -2.444      0.015
+    ZATT               0.323      0.090      3.613      0.000
+    ZCE                0.112      0.115      0.972      0.331
+    ZPLF               0.169      0.068      2.487      0.013
+    ZVSCCB             0.149      0.101      1.468      0.142
+
+ ZSC      ON
+    AGE                0.187      0.080      2.338      0.019
+    GENDER             0.024      0.088      0.270      0.787
+    ZATT               0.035      0.087      0.404      0.686
+    ZCE                0.285      0.087      3.277      0.001
+    ZPLF               0.117      0.111      1.054      0.292
+    ZVSCCB             0.327      0.075      4.356      0.000
+
+ ZNSE     WITH
+    ZSE                0.490      0.081      6.014      0.000
+    ZSC                0.114      0.103      1.113      0.266
+
+ ZSE      WITH
+    ZSC                0.164      0.087      1.878      0.060
+
+ AGE      WITH
+    ZATT               0.020      0.092      0.214      0.830
+    ZCE                0.058      0.098      0.596      0.551
+    ZPLF               0.051      0.083      0.615      0.538
+    ZVSCCB             0.084      0.094      0.894      0.371
+
+ ZATT     WITH
+    ZCE                0.169      0.097      1.742      0.082
+    ZVSCCB             0.313      0.089      3.503      0.000
+
+ ZCE      WITH
+    ZPLF               0.146      0.097      1.504      0.133
+    ZVSCCB             0.118      0.102      1.165      0.244
+
+ ZPLF     WITH
+    ZVSCCB             0.137      0.105      1.303      0.192
+    ZATT               0.358      0.116      3.087      0.002
+
+ Means
+    AGE               15.207      1.341     11.342      0.000
+    ZVSCCB            -0.045      0.100     -0.453      0.650
+    ZATT               0.024      0.101      0.239      0.811
+    ZCE                0.071      0.103      0.691      0.490
+    ZPLF               0.011      0.097      0.112      0.911
+
+ Intercepts
+    ZNSE              -0.415      1.132     -0.367      0.714
+    ZSE               -1.647      1.238     -1.330      0.184
+    ZSC               -2.924      1.081     -2.705      0.007
+
+ Variances
+    AGE                1.000      0.000    999.000    999.000
+    ZVSCCB             1.000      0.000    999.000    999.000
+    ZATT               1.000      0.000    999.000    999.000
+    ZCE                1.000      0.000    999.000    999.000
+    ZPLF               1.000      0.000    999.000    999.000
+
+ Residual Variances
+    ZNSE               0.787      0.086      9.197      0.000
+    ZSE                0.661      0.084      7.873      0.000
+    ZSC                0.686      0.080      8.628      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    ZNSE               0.213      0.086      2.495      0.013
+    ZSE                0.339      0.084      4.042      0.000
+    ZSC                0.314      0.080      3.941      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.324E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+MODEL MODIFICATION INDICES
+
+Minimum M.I. value for printing the modification index    10.000
+
+                                   M.I.     E.P.C.  Std E.P.C.  StdYX E.P.C.
+
+No modification indices above the minimum value.
+
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION
+
+
+           NU
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+                  0             0             0             0             0
+
+
+           NU
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+                  0             0             0             0
+
+
+           LAMBDA
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE               0             0             0             0             0
+ ZSE                0             0             0             0             0
+ ZSC                0             0             0             0             0
+ AGE                0             0             0             0             0
+ ZVSCCB             0             0             0             0             0
+ ZATT               0             0             0             0             0
+ ZCE                0             0             0             0             0
+ ZPLF               0             0             0             0             0
+ GENDER             0             0             0             0             0
+
+
+           LAMBDA
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZNSE               0             0             0             0
+ ZSE                0             0             0             0
+ ZSC                0             0             0             0
+ AGE                0             0             0             0
+ ZVSCCB             0             0             0             0
+ ZATT               0             0             0             0
+ ZCE                0             0             0             0
+ ZPLF               0             0             0             0
+ GENDER             0             0             0             0
+
+
+           THETA
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE               0
+ ZSE                0             0
+ ZSC                0             0             0
+ AGE                0             0             0             0
+ ZVSCCB             0             0             0             0             0
+ ZATT               0             0             0             0             0
+ ZCE                0             0             0             0             0
+ ZPLF               0             0             0             0             0
+ GENDER             0             0             0             0             0
+
+
+           THETA
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT               0
+ ZCE                0             0
+ ZPLF               0             0             0
+ GENDER             0             0             0             0
+
+
+           ALPHA
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           ALPHA
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+                  6             7             8             0
+
+
+           BETA
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE               0             0             0             9            10
+ ZSE                0             0             0            15            16
+ ZSC                0             0             0            21            22
+ AGE                0             0             0             0             0
+ ZVSCCB             0             0             0             0             0
+ ZATT               0             0             0             0             0
+ ZCE                0             0             0             0             0
+ ZPLF               0             0             0             0             0
+ GENDER             0             0             0             0             0
+
+
+           BETA
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZNSE              11            12            13            14
+ ZSE               17            18            19            20
+ ZSC               23            24            25            26
+ AGE                0             0             0             0
+ ZVSCCB             0             0             0             0
+ ZATT               0             0             0             0
+ ZCE                0             0             0             0
+ ZPLF               0             0             0             0
+ GENDER             0             0             0             0
+
+
+           PSI
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE              27
+ ZSE               28            29
+ ZSC               30            31            32
+ AGE                0             0             0            33
+ ZVSCCB             0             0             0            34            35
+ ZATT               0             0             0            36            37
+ ZCE                0             0             0            39            40
+ ZPLF               0             0             0            43            44
+ GENDER             0             0             0             0             0
+
+
+           PSI
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT              38
+ ZCE               41            42
+ ZPLF              45            46            47
+ GENDER             0             0             0             0
+
+
+     STARTING VALUES
+
+
+           NU
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           1.000         0.000         0.000         0.000         0.000
+ ZSE            0.000         1.000         0.000         0.000         0.000
+ ZSC            0.000         0.000         1.000         0.000         0.000
+ AGE            0.000         0.000         0.000         1.000         0.000
+ ZVSCCB         0.000         0.000         0.000         0.000         1.000
+ ZATT           0.000         0.000         0.000         0.000         0.000
+ ZCE            0.000         0.000         0.000         0.000         0.000
+ ZPLF           0.000         0.000         0.000         0.000         0.000
+ GENDER         0.000         0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZNSE           0.000         0.000         0.000         0.000
+ ZSE            0.000         0.000         0.000         0.000
+ ZSC            0.000         0.000         0.000         0.000
+ AGE            0.000         0.000         0.000         0.000
+ ZVSCCB         0.000         0.000         0.000         0.000
+ ZATT           1.000         0.000         0.000         0.000
+ ZCE            0.000         1.000         0.000         0.000
+ ZPLF           0.000         0.000         1.000         0.000
+ GENDER         0.000         0.000         0.000         1.000
+
+
+           THETA
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           0.000
+ ZSE            0.000         0.000
+ ZSC            0.000         0.000         0.000
+ AGE            0.000         0.000         0.000         0.000
+ ZVSCCB         0.000         0.000         0.000         0.000         0.000
+ ZATT           0.000         0.000         0.000         0.000         0.000
+ ZCE            0.000         0.000         0.000         0.000         0.000
+ ZPLF           0.000         0.000         0.000         0.000         0.000
+ GENDER         0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           0.000
+ ZCE            0.000         0.000
+ ZPLF           0.000         0.000         0.000
+ GENDER         0.000         0.000         0.000         0.000
+
+
+           ALPHA
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         6.274        -0.030
+
+
+           ALPHA
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+                0.000         0.065         0.000         1.455
+
+
+           BETA
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           0.000         0.000         0.000         0.000         0.000
+ ZSE            0.000         0.000         0.000         0.000         0.000
+ ZSC            0.000         0.000         0.000         0.000         0.000
+ AGE            0.000         0.000         0.000         0.000         0.000
+ ZVSCCB         0.000         0.000         0.000         0.000         0.000
+ ZATT           0.000         0.000         0.000         0.000         0.000
+ ZCE            0.000         0.000         0.000         0.000         0.000
+ ZPLF           0.000         0.000         0.000         0.000         0.000
+ GENDER         0.000         0.000         0.000         0.000         0.000
+
+
+           BETA
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZNSE           0.000         0.000         0.000         0.000
+ ZSE            0.000         0.000         0.000         0.000
+ ZSC            0.000         0.000         0.000         0.000
+ AGE            0.000         0.000         0.000         0.000
+ ZVSCCB         0.000         0.000         0.000         0.000
+ ZATT           0.000         0.000         0.000         0.000
+ ZCE            0.000         0.000         0.000         0.000
+ ZPLF           0.000         0.000         0.000         0.000
+ GENDER         0.000         0.000         0.000         0.000
+
+
+           PSI
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           0.495
+ ZSE            0.000         0.495
+ ZSC            0.000         0.000         0.495
+ AGE            0.000         0.000         0.000         0.085
+ ZVSCCB         0.000         0.000         0.000         0.000         0.453
+ ZATT           0.000         0.000         0.000         0.000         0.000
+ ZCE            0.000         0.000         0.000         0.000         0.000
+ ZPLF           0.000         0.000         0.000         0.000         0.000
+ GENDER         0.000         0.000         0.000         0.000         0.000
+
+
+           PSI
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           0.495
+ ZCE            0.000         0.390
+ ZPLF           0.000         0.000         0.495
+ GENDER         0.000         0.000         0.000         0.248
+
+
+TECHNICAL 4 OUTPUT
+
+
+     ESTIMATES DERIVED FROM THE MODEL
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+                0.007        -0.015        -0.001         6.274        -0.043
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+                0.024         0.063         0.011         1.455
+
+
+           S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+                0.097         0.098         0.096         0.039         0.094
+
+
+           S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+                0.100         0.087         0.097         0.047
+
+
+           EST./S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+                0.075        -0.157        -0.013       159.491        -0.456
+
+
+           EST./S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+                0.238         0.723         0.112        30.638
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+                0.940         0.876         0.990         0.000         0.648
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+                0.812         0.470         0.911         0.000
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           0.987
+ ZSE            0.598         0.992
+ ZSC            0.291         0.350         0.992
+ AGE            0.029         0.074         0.098         0.170
+ ZVSCCB         0.237         0.284         0.383         0.033         0.909
+ ZATT           0.344         0.445         0.228         0.008         0.295
+ ZCE            0.203         0.192         0.315         0.021         0.100
+ ZPLF           0.321         0.326         0.224         0.021         0.131
+ GENDER        -0.024        -0.102         0.012         0.000         0.000
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           0.976
+ ZCE            0.148         0.782
+ ZPLF           0.352         0.129         0.995
+ GENDER         0.000         0.000         0.000         0.248
+
+
+           S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           0.122
+ ZSE            0.106         0.104
+ ZSC            0.114         0.103         0.161
+ AGE            0.034         0.035         0.043         0.031
+ ZVSCCB         0.103         0.106         0.101         0.038         0.122
+ ZATT           0.115         0.106         0.108         0.037         0.095
+ ZCE            0.092         0.099         0.105         0.035         0.086
+ ZPLF           0.117         0.090         0.129         0.034         0.100
+ GENDER         0.046         0.042         0.044         0.000         0.000
+
+
+           S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           0.148
+ ZCE            0.087         0.132
+ ZPLF           0.144         0.085         0.218
+ GENDER         0.000         0.000         0.000         0.004
+
+
+           EST./S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           8.072
+ ZSE            5.633         9.561
+ ZSC            2.551         3.405         6.163
+ AGE            0.869         2.115         2.274         5.516
+ ZVSCCB         2.312         2.681         3.800         0.864         7.453
+ ZATT           3.000         4.193         2.105         0.215         3.116
+ ZCE            2.208         1.932         3.000         0.602         1.159
+ ZPLF           2.751         3.644         1.745         0.625         1.312
+ GENDER        -0.516        -2.430         0.270         0.000         0.000
+
+
+           EST./S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           6.608
+ ZCE            1.698         5.942
+ ZPLF           2.442         1.522         4.573
+ GENDER         0.000         0.000         0.000        57.446
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           0.000
+ ZSE            0.000         0.000
+ ZSC            0.011         0.001         0.000
+ AGE            0.385         0.034         0.023         0.000
+ ZVSCCB         0.021         0.007         0.000         0.388         0.000
+ ZATT           0.003         0.000         0.035         0.830         0.002
+ ZCE            0.027         0.053         0.003         0.547         0.246
+ ZPLF           0.006         0.000         0.081         0.532         0.190
+ GENDER         0.606         0.015         0.787         1.000         1.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           0.000
+ ZCE            0.089         0.000
+ ZPLF           0.015         0.128         0.000
+ GENDER         1.000         1.000         1.000         0.000
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           1.000
+ ZSE            0.605         1.000
+ ZSC            0.294         0.353         1.000
+ AGE            0.071         0.180         0.238         1.000
+ ZVSCCB         0.250         0.299         0.403         0.084         1.000
+ ZATT           0.350         0.452         0.231         0.020         0.313
+ ZCE            0.231         0.218         0.358         0.058         0.118
+ ZPLF           0.324         0.329         0.226         0.051         0.137
+ GENDER        -0.048        -0.206         0.024         0.000         0.000
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           1.000
+ ZCE            0.169         1.000
+ ZPLF           0.358         0.146         1.000
+ GENDER         0.000         0.000         0.000         1.000
+
+
+           S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           0.000
+ ZSE            0.076         0.000
+ ZSC            0.103         0.087         0.000
+ AGE            0.082         0.084         0.093         0.000
+ ZVSCCB         0.100         0.099         0.076         0.094         0.000
+ ZATT           0.093         0.082         0.099         0.092         0.089
+ ZCE            0.105         0.115         0.097         0.098         0.102
+ ZPLF           0.091         0.072         0.132         0.083         0.105
+ GENDER         0.094         0.084         0.088         0.000         0.000
+
+
+           S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           0.000
+ ZCE            0.097         0.000
+ ZPLF           0.116         0.097         0.000
+ GENDER         0.000         0.000         0.000         0.000
+
+
+           EST./S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE         999.000
+ ZSE            7.976       999.000
+ ZSC            2.858         4.045       999.000
+ AGE            0.864         2.138         2.557       999.000
+ ZVSCCB         2.515         3.018         5.310         0.894       999.000
+ ZATT           3.759         5.495         2.342         0.214         3.503
+ ZCE            2.202         1.896         3.707         0.596         1.165
+ ZPLF           3.575         4.588         1.711         0.615         1.303
+ GENDER        -0.515        -2.444         0.270         0.000         0.000
+
+
+           EST./S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT         999.000
+ ZCE            1.742       999.000
+ ZPLF           3.087         1.504       999.000
+ GENDER         0.000         0.000         0.000       999.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ZNSE          ZSE           ZSC           AGE           ZVSCCB
+              ________      ________      ________      ________      ________
+ ZNSE           0.000
+ ZSE            0.000         0.000
+ ZSC            0.004         0.000         0.000
+ AGE            0.388         0.033         0.011         0.000
+ ZVSCCB         0.012         0.003         0.000         0.371         0.000
+ ZATT           0.000         0.000         0.019         0.830         0.000
+ ZCE            0.028         0.058         0.000         0.551         0.244
+ ZPLF           0.000         0.000         0.087         0.538         0.192
+ GENDER         0.606         0.015         0.787         1.000         1.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ZATT          ZCE           ZPLF          GENDER
+              ________      ________      ________      ________
+ ZATT           0.000
+ ZCE            0.082         0.000
+ ZPLF           0.002         0.133         0.000
+ GENDER         1.000         1.000         1.000         0.000
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    d:\0_hazel_e_disk\yanglab\worksss\Í¶¸å\×ªÍ¶-humanities and social sciences communications\20261105-major revision\gi
+
+     Beginning Time:  15:23:07
+        Ending Time:  15:23:08
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen
