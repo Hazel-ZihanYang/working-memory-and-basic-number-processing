@@ -18,10 +18,15 @@ The study involved 110 Chinese children and examined how three components of wor
 
 | File                      | Description                                                                                                           
 | `data_WMandNUMBER.sav`    | Study dataset in SPSS format. 
+
 | `data_WMandNUMBER.dat`    | Dataset in the format used by Mplus.
+
 | `Path_analysis.inp`       | Mplus syntax for the main multivariate multiple regression analysis using the robust maximum likelihood (MLR) estimator.
+
 | `path_analysis.out`       | Mplus results for the main analysis, reported in the manuscript (Table 3 and Figure 2). 
+
 | `BAYES_Path_analysis.inp` | Mplus syntax for the supplementary Bayesian multivariate multiple regression analysis. 
+
 | `bayes_path_analysis.out` | Mplus results for the Bayesian analysis, reported in the Supplementary Material (Table S1).
 
 
